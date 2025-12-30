@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importador Masivo de Socios</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SheetJS CDN -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Importador Masivo de Socios</h1>
+
+        <div id="drop-zone" class="drop-zone">
+            <p>Arrastra tu archivo Excel (.xlsx) aquí o haz clic para subir</p>
+            <input type="file" id="file-input" accept=".xlsx" hidden>
+        </div>
+
+        <div id="preview-section" class="hidden">
+            <h2>Previsualización</h2>
+            <div class="table-container">
+                <table id="preview-table">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>RUT Original</th>
+                            <th>RUT Limpio</th>
+                            <th>Nombre Original</th>
+                            <th>Nombre Formateado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="actions">
+                <button id="btn-save" disabled>Guardar en Base de Datos</button>
+                <button id="btn-reset">Cancelar</button>
+            </div>
+        </div>
+
+        <div id="log-section">
+            <h3>Base de Datos Actual (Simulada)</h3>
+            <pre id="db-view"></pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
