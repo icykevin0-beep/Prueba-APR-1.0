@@ -1,55 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Importador Masivo de Socios</title>
+    <title>Lumina APR - Gestión de Agua Potable Rural</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Sistema de gestión integral para Agua Potable Rural">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Lumina">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
-    <!-- SheetJS CDN -->
+    
+    <!-- External Libraries -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
+
 <body>
-
-    <div class="container">
-        <h1>Importador Masivo de Socios</h1>
-
-        <div id="drop-zone" class="drop-zone">
-            <p>Arrastra tu archivo Excel (.xlsx) aquí o haz clic para subir</p>
-            <input type="file" id="file-input" accept=".xlsx" hidden>
-        </div>
-
-        <div id="preview-section" class="hidden">
-            <h2>Previsualización</h2>
-            <div class="table-container">
-                <table id="preview-table">
-                    <thead>
-                        <tr>
-                            <th>Estado</th>
-                            <th>RUT Original</th>
-                            <th>RUT Limpio</th>
-                            <th>Nombre Original</th>
-                            <th>Nombre Formateado</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Rows will be injected here -->
-                    </tbody>
-                </table>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="/icons/icon-192.png" alt="Lumina" class="logo" id="logo-placeholder">
+                <h1 class="app-title">Lumina</h1>
+                <button class="theme-toggle" id="theme-toggle" title="Cambiar tema">
+                    <span class="icon-moon">🌙</span>
+                    <span class="icon-sun">☀️</span>
+                </button>
             </div>
 
-            <div class="actions">
-                <button id="btn-save" disabled>Guardar en Base de Datos</button>
-                <button id="btn-reset">Cancelar</button>
-            </div>
-        </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item" data-module="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-module="socios">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-label">Socios</span>
+                    </li>
+                    <li class="nav-item" data-module="lecturas">
+                        <span class="nav-icon">📈</span>
+                        <span class="nav-label">Lecturas</span>
+                    </li>
+                    <li class="nav-item" data-module="facturacion">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-label">Facturación</span>
+                    </li>
+                    <li class="nav-item" data-module="configuracion">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Configuración</span>
+                    </li>
+                </ul>
+            </nav>
 
-        <div id="log-section">
-            <h3>Base de Datos Actual (Simulada)</h3>
-            <pre id="db-view"></pre>
-        </div>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <div class="user-details">
+                        <p class="user-name">Admin</p>
+                        <p class="user-role">Administrador</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Mobile Header with Hamburger -->
+            <header class="mobile-header">
+                <button class="hamburger" id="hamburger">☰</button>
+                <h1 class="mobile-title">Lumina APR</h1>
+            </header>
+
+            <!-- Tab Bar -->
+            <div class="tab-bar" id="tab-bar">
+                <!-- Tabs will be dynamically inserted here -->
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area" id="content-area">
+                <div class="welcome-screen">
+                    <img src="/icons/icon-512.png" alt="Lumina" class="welcome-logo" id="welcome-logo-placeholder">
+                    <h2>Bienvenido a Lumina APR</h2>
+                    <p>Selecciona un módulo del menú lateral para comenzar</p>
+                </div>
+            </div>
+        </main>
     </div>
 
+    <!-- Core Application Scripts -->
+    <script type="module" src="app.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

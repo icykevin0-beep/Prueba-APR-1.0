@@ -6,6 +6,7 @@ Este es una aplicación web SPA (Single Page Application) para la carga masiva d
 ## Stack Tecnológico
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla).
 - **Librerías**: `SheetJS` (xlsx.full.min.js) para parsear archivos Excel.
+- **Persistencia**: LocalStorage del navegador para guardar la base de datos y historial.
 
 ## Reglas Críticas de Negocio
 
@@ -27,5 +28,68 @@ Este es una aplicación web SPA (Single Page Application) para la carga masiva d
   - **Acción**: Preguntar explícitamente al usuario (Confirmación) si desea actualizar el nombre.
   - No sobrescribir automáticamente.
 
+## Funcionalidades de Productividad
+
+### 📥 Exportar Excel Corregido
+- Genera un archivo .xlsx con solo los datos válidos
+- RUTs formateados correctamente
+- Nombres normalizados en Title Case
+- Excluye duplicados internos
+
+### ⚠️ Exportar Reporte de Errores
+- Archivo Excel con todos los registros inválidos
+- Incluye RUT original, nombre, y descripción del error
+- Muestra sugerencias de corrección automática cuando están disponibles
+
+### 📋 Descargar Plantilla
+- Genera un archivo Excel de ejemplo con el formato correcto
+- Incluye ejemplos de RUTs y nombres válidos
+- Para compartir con personas que envían datos
+
+### 🔧 Auto-Corrección de RUTs
+- Intenta corregir RUTs con errores comunes
+- Agrega ceros faltantes al inicio
+- Prueba diferentes dígitos verificadores
+- Muestra sugerencias con nivel de confianza
+
+### 📊 Estadísticas de Calidad
+- Total de registros procesados
+- Porcentaje de válidos vs inválidos
+- Cantidad de duplicados con la BD
+- Duplicados internos en el mismo archivo
+
+### 🔄 Estrategias de Duplicados
+- **Preguntar cada vez**: Confirmación manual (por defecto)
+- **Siempre actualizar**: Sobrescribe nombres automáticamente
+- **Nunca actualizar**: Solo agrega nuevos, no modifica existentes
+- **Revisar al final**: Muestra resumen de todos los duplicados antes de decidir
+
+### 💾 Backup y Restauración
+- **Exportar BD**: Descarga archivo JSON con toda la base de datos
+- **Importar BD**: Carga BD desde archivo JSON
+- **Auto-save**: Guarda automáticamente en LocalStorage del navegador
+
+### 🔍 Búsqueda en Base de Datos
+- Filtro en tiempo real por RUT o nombre
+- Case-insensitive
+- Actualización instantánea de resultados
+
+### ✏️ Edición Manual
+- Editar nombres directamente en la tabla de BD
+- Eliminar registros individuales
+- Confirma antes de eliminar
+
+### 📜 Historial de Importaciones
+- Log de las últimas 10 importaciones
+- Timestamp de cada operación
+- Estadísticas: nuevos, actualizados, omitidos, errores
+- Persiste en LocalStorage
+
+### 📝 Edición Inline en Previsualización
+- Doble click en RUT para editar
+- Validación automática al modificar
+- Actualiza estadísticas en tiempo real
+
 ## Comandos Útiles
-- Para probar localmente: `python3 -m http.server 8000`
+- Para probar localmente: `python3 -m http.server 8000` o `npx -y http-server -p 8000`
+
